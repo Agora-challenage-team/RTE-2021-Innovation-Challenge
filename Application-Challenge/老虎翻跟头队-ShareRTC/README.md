@@ -1,8 +1,8 @@
 # ShareRTC项目
 首先，明确一点：本项目是有两部分项目，
-分别是自己构建的vue项目和基于webRTC samples构建的webRTC-node的demo项目
+分别是自己构建的vue项目和基于Agora Web Live SDK构建的webRTC的demo项目
 
-分别位于主目录ShareRTC和主目录下的rtc-demo子目录下👉
+分别位于主目录ShareRTC和主目录下的OpenLive-Web子目录下👉
 
 下面我们将对项目依赖进行安装并运行：
 ## 步骤
@@ -44,7 +44,7 @@ npm run dev
 
 #### 三、项目开发
 项目的框架的构建完毕，可以进行功能模块的开发了。项目的功能<br>
-对标Google metting，另外本项目以及安装了 elementUI 框架的包，
+对标Google metting和飞书会议，另外本项目以及安装了 elementUI 框架的包，
 需要引入在 App.vue 中全局引入即可.
 
 本项目暂时没有与Java后端对接，目前基于Agora SDK的功能可以不
