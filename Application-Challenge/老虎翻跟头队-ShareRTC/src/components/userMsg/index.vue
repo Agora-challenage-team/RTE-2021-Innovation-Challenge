@@ -1,10 +1,10 @@
 <template>
-  <div>chatMsg</div>
+  <div>userMsg</div>
 </template>
 
 <script>
 export default {
-  name: "chatMsg",
+  name: "userMsg",
 };
 </script>
 
