@@ -2,7 +2,7 @@
   <el-container>
     <div class="left" ref="left">
       <!-- <el-card>
-        白色侧边栏 
+        白色侧边栏
         <el-row class="tac">
           <el-col :span="12"> -->
       <!-- <h5>自定义颜色</h5> -->
