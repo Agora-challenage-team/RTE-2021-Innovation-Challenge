@@ -1,6 +1,5 @@
 ﻿<template>
   <el-container>
-<<<<<<< HEAD
     <div class="left">
       <div class="avactor" :class="showStatus ? 'login' : 'logout'">
         <img src="" alt="" />
@@ -10,46 +9,6 @@
           <span v-show="!showStatus">掉线</span>
         </div>
       </div>
-=======
-    <div class="left" ref="left">
-      <!-- <el-card>
-        白色侧边栏
-        <el-row class="tac">
-          <el-col :span="12"> -->
-      <!-- <h5>自定义颜色</h5> -->
-      <!-- <el-menu
-              default-active="1"
-              class="el-menu-vertical-demo"
-              background-color="#545c64"
-              text-color="#fff"
-              active-text-color="#ffd04b"
-              :collapse="isCollapse"
-            > -->
-      <!-- <el-menu-item index="1" class="el-menu-ver-item">
-                <i class="el-icon-user-solid" num="1"></i>
-                <span slot="title">个人信息</span>
-              </el-menu-item>
-              <el-menu-item index="2" class="el-menu-ver-item">
-                <i class="el-icon-s-custom" num="2"></i>
-                <span slot="title">联系人</span>
-              </el-menu-item>
-              <el-menu-item index="3" class="el-menu-ver-item">
-                <i class="el-icon-video-camera" num="3"></i>
-                <span slot="title">加入视频</span>
-              </el-menu-item>
-              <el-menu-item index="4" class="el-menu-ver-item">
-                <i class="el-icon-edit-outline" num="4"></i>
-                <span slot="title">文档编写</span>
-              </el-menu-item>
-
-              <el-menu-item index="5" @click="handleToggle" class="el-menu-ver-item">
-                <i class="el-icon-back" num="5"></i>
-                <span slot="title">收起</span>
-              </el-menu-item> -->
-      <el-drawer title="个人信息" :visible.sync="drawer" :direction="direction">
-        <span>个人信息</span>
-      </el-drawer>
->>>>>>> 562800f9abdfafc3ecc8233ea4eec29f0b87b1f9
 
       <div class="left_menu">
         <router-link

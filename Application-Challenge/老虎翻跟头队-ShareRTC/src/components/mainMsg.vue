@@ -1,7 +1,6 @@
 <template>
   <el-container>
     <el-card class="main_el_card">
-      <div class="time_tag" ref="timeTag"></div>
       <div id="fancyClock" ref="fancy">
         <div class="clock">
           <div class="display" id="hours">{{ hour }}</div>
@@ -14,6 +13,9 @@
         <div class="clock">
           <div class="display" id="seconds">{{ sec }}</div>
         </div>
+
+        <div class="time_tag" ref="timeTag"></div>
+        <span class="tagMsg">{{ tagMsg }}</span>
       </div>
 
       <img style="height: auto; width: 300px" src="../assets/vide-call.svg" />
@@ -33,6 +35,7 @@ export default {
       hour: "",
       min: "",
       sec: "",
+      tagMsg: "加油，今天也是美好的一天~",
     };
   },
   mounted() {
@@ -40,6 +43,9 @@ export default {
   },
   methods: {
     zero(n, top) {
+      if (top === 59) {
+        top = "00";
+      }
       (n = parseInt(n, 10)), (top = top || "00");
       if (n > 0) {
         if (n <= 9) {
@@ -57,19 +63,21 @@ export default {
       this.m = this.mytime.getMinutes();
       this.s = this.mytime.getSeconds();
       this.hour = this.zero(this.h);
-      this.min = this.zero(this.m, 60);
-      this.sec = this.zero(this.s, 60);
+      this.min = this.zero(this.m, 59);
+      this.sec = this.zero(this.s, 59);
       // 日出
       if (this.h >= 5 && this.h <= 7) {
         this.$refs.timeTag.style.backgroundImage =
           "url(" + require("../assets/sunrise.svg") + ")";
         this.$refs.fancy.style.backgroundImage = "linear-gradient(#e64c10, #c7e61b)";
+        this.tagMsg = "日出啦，早点起床看看这绝美的日出，开始新的一天吧~";
       }
       // 早上
       if (this.h > 7 && this.h <= 17) {
         this.$refs.timeTag.style.backgroundImage =
           "url(" + require("../assets/sun.svg") + ")";
         this.$refs.fancy.style.backgroundImage = "linear-gradient(#757bce, #4e55a0)";
+        this.tagMsg = "早上好，吃完早餐活力满满，就开始今天的工作吧~";
       }
       // 晚上
       if (this.h > 17) {
@@ -79,6 +87,7 @@ export default {
         this.$refs.timeTag.style.width = 200 + "px";
         this.$refs.timeTag.style.height = 200 + "px";
         this.$refs.fancy.style.backgroundImage = "linear-gradient(#0918f5, #242855)";
+        this.tagMsg = "晚上好，夜已深，别忘了忙活太累了，注意休息哦~";
       }
 
       setTimeout(() => {
@@ -120,7 +129,6 @@ a {
   background-color: rgb(168, 168, 219);
   width: 600px;
   border-radius: 20px;
-  overflow: hidden;
   margin-top: 65px;
   position: relative;
 }
@@ -174,12 +182,16 @@ a {
 
 .time_tag {
   position: absolute;
-  top: -1%;
-  left: 30%;
+  top: -60%;
+  left: -2%;
   height: 180px;
   width: 180px;
   background: url("../assets/moon.svg") no-repeat;
   z-index: 1000;
   transform: scale(0.8);
+}
+
+.tagMsg {
+  font-weight: 800;
 }
 </style>
