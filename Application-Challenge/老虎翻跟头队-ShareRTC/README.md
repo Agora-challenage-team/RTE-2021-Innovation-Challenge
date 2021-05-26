@@ -1,27 +1,37 @@
 # ShareRTC项目
 首先，明确一点：本项目是有两部分项目，
-分别是自己构建的vue项目和基于webRTC samples构建的webRTC-node的demo项目
+分别是自己构建的vue项目和基于Agora Web Live SDK构建的webRTC的demo项目
 
-分别位于主目录ShareRTC和主目录下的rtc-demo子目录下👉
+分别位于主目录ShareRTC和主目录下的OpenLive-Web子目录下👉
 
 下面我们将对项目依赖进行安装并运行：
 ## 步骤
 #### 一、查看webRTC的演示demo
+首先需要接入声网的SDK，也就是配置根目录下的.env文件
+```yaml
+REACT_APP_AGORA_APP_ID=你的appID
+REACT_APP_AGORA_APP_TOKEN=你的app-token
+```
+试用期是24小时(可以使用我的配置，但不保证我的appID与app-token是否过期)
+
+默认加入的房间号是：`deepisea`
+
+下面运行项目：
 ``` bash
-# 切换到rtc-demo目录
-cd rtc-demo
+# 切换到OpenLive-Web目录
+cd OpenLive-Web
 
 # 安装依赖
 npm install
 
 # 运行
-node ./bin/www
+npm run dev
 ```
 运行完成之后，打开 http://localhost:3000 查看运行效果
 #### 二、运行本项目 🚀
 切换回主目录，进行主项目的安装与运行
 ```bash
-# 切换目录
+# 切换回根目录
 cd ../
 
 # 安装依赖
@@ -34,17 +44,24 @@ npm run dev
 
 #### 三、项目开发
 项目的框架的构建完毕，可以进行功能模块的开发了。项目的功能<br>
-对标Google metting，另外本项目以及安装了 elementUI 框架的包，
+对标Google metting和飞书会议，另外本项目以及安装了 elementUI 框架的包，
 需要引入在 App.vue 中全局引入即可.
 
 本项目暂时没有与Java后端对接，目前基于Agora SDK的功能可以不
 考虑后端的引入，如果要加的话再配合跨域即可.
 
 #### 四、存在的问题
-就是将 rtc-demo 的代理到公网服务器中，会出现需要turn服务器进行
-穿透才能穿透成功的问题，目前还需要配置一下webRTC的turn服务.
+目前声网的webRTC直播示例项目配置了turn服务，
+将项目部署到服务器或内网穿透可以达到直播效果.
+但是，示例项目存在移动端适配问题(或浏览器版本兼容问题？)
+以及屏幕共享的功能实现有问题.
 
 #### 目前进度
 * 目前正在实现左边的侧边栏功能样式
 * 接下来就是右边视频会议主题功能，接入声网SDK
+* 基本功能确定了一下，分别是：
+* 左侧：用户头像、消息、创建会议、加入会议以及注销登录
+* 右侧：视频直播主题区域（先登录注册，再进入到视频直播），
+直播下方有麦克风、挂断以及打开摄像头的功能.
+* 目前急需完成登录注册功能，然后是将直播功能(可用)集成到系统中
 * ......
