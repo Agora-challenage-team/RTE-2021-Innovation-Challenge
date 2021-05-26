@@ -1,96 +1,81 @@
 ﻿<template>
   <el-container>
-    <div class="left" ref="left">
-      <!-- <el-card>
-        白色侧边栏 
-        <el-row class="tac">
-          <el-col :span="12"> -->
-      <!-- <h5>自定义颜色</h5> -->
-      <!-- <el-menu
-              default-active="1"
-              class="el-menu-vertical-demo"
-              background-color="#545c64"
-              text-color="#fff"
-              active-text-color="#ffd04b"
-              :collapse="isCollapse"
-            > -->
-      <!-- <el-menu-item index="1" class="el-menu-ver-item">
-                <i class="el-icon-user-solid" num="1"></i>
-                <span slot="title">个人信息</span>
-              </el-menu-item>
-              <el-menu-item index="2" class="el-menu-ver-item">
-                <i class="el-icon-s-custom" num="2"></i>
-                <span slot="title">联系人</span>
-              </el-menu-item>
-              <el-menu-item index="3" class="el-menu-ver-item">
-                <i class="el-icon-video-camera" num="3"></i>
-                <span slot="title">加入视频</span>
-              </el-menu-item>
-              <el-menu-item index="4" class="el-menu-ver-item">
-                <i class="el-icon-edit-outline" num="4"></i>
-                <span slot="title">文档编写</span>
-              </el-menu-item>
-
-              <el-menu-item index="5" @click="handleToggle" class="el-menu-ver-item">
-                <i class="el-icon-back" num="5"></i>
-                <span slot="title">收起</span>
-              </el-menu-item> -->
-      <el-drawer title="个人信息" :visible.sync="drawer" :direction="direction">
-        <span>个人信息</span>
-      </el-drawer>
-
-      <div class="left_menu">
-        <div class="userMsg" @mouseenter="handleToShow" @mouseleave="handleToHid">
-          <i class="el-icon-user-solid"></i>
-          <span num="0">个人信息</span>
-        </div>
-        <div class="chatMsg" @mouseenter="handleToShow" @mouseleave="handleToHid">
-          <i class="el-icon-chat-dot-round"></i>
-          <span num="1">聊天消息</span>
-        </div>
-        <div class="createMeeting" @mouseenter="handleToShow" @mouseleave="handleToHid">
-          <i class="el-icon-video-camera"></i>
-          <span num="2">创建会议</span>
-        </div>
-        <div class="addMeeting" @mouseenter="handleToShow" @mouseleave="handleToHid">
-          <i class="el-icon-circle-plus"></i>
-          <span num="3">加入会议</span>
+    <div class="left">
+      <div class="avactor" :class="showStatus ? 'login' : 'logout'">
+        <img src="" alt="" />
+        <div class="username">taptaq</div>
+        <div class="status">
+          <span v-show="showStatus">在线</span>
+          <span v-show="!showStatus">掉线</span>
         </div>
       </div>
-      <!-- </el-menu> -->
-      <!-- </el-col>
-        </el-row>
-      </el-card> -->
+
+      <div class="left_menu">
+        <router-link
+          tag="div"
+          to="/mainMsg"
+          class="mainMsg"
+          @mouseenter.native="handleToShow"
+          @mouseleave.native="handleToHid"
+        >
+          <i class="el-icon-house"></i>
+          <span class="home">主界面</span>
+        </router-link>
+
+        <router-link
+          tag="div"
+          to="/userMsg"
+          class="userMsg"
+          @mouseenter.native="handleToShow"
+          @mouseleave.native="handleToHid"
+        >
+          <i class="el-icon-user-solid"></i>
+          <span>个人信息</span>
+        </router-link>
+
+        <div
+          class="chatMsg"
+          @mouseenter="handleToShow"
+          @mouseleave="handleToHid"
+          @click="showChatMsg"
+        >
+          <i class="el-icon-chat-dot-round"></i>
+          <span>聊天消息</span>
+        </div>
+
+        <router-link
+          tag="div"
+          to="/videoMeeting"
+          class="video_Meeting"
+          @mouseenter.native="handleToShow"
+          @mouseleave.native="handleToHid"
+        >
+          <i class="el-icon-video-camera"></i>
+          <span>视频会议</span>
+        </router-link>
+      </div>
     </div>
 
+    <chatMsg v-show="showChat" />
+
     <!-- 分隔符  -->
-    <router-view></router-view>
-    <!-- <div>
-      <el-card style="width: 1200px; height: 674px; margin-left: 20px">
-        <h1 style="font-size: 50px">
-          <b>{{ msg }}</b>
-        </h1>
-        <img style="height: auto; width: 300px" src="../assets/vide-call.svg" />
-        <img
-          style="height: auto; width: 300px; margin-top: 100px"
-          src="../assets/video-share.svg"
-        />
-        <img style="height: auto; width: 300px" src="../assets/video-conference.svg" />
-      </el-card>
-    </div> -->
+    <router-view />
   </el-container>
 </template>
 
 <script>
+import chatMsg from "@/components/chatMsg.vue";
 export default {
   name: "layout",
+  components: {
+    chatMsg,
+  },
   data() {
     return {
-      msg: "欢迎接入webRTC视频会议",
-      // isCollapse: false,
+      // msg: "欢迎接入webRTC视频会议",
       height: "", // 浏览器高度
-      drawer: false,
-      direction: "ltr",
+      showStatus: false,
+      showChat: false,
     };
   },
   // 初始化函数
@@ -105,13 +90,9 @@ export default {
     handleToHid(e) {
       e.target.children[1].style.visibility = "hidden";
     },
-    // handleClose(done) {
-    //   this.$confirm("确认关闭？")
-    //     .then((_) => {
-    //       done();
-    //     })
-    //     .catch((_) => {});
-    // },
+    showChatMsg() {
+      this.showChat = !this.showChat;
+    },
   },
 };
 </script>
@@ -125,6 +106,43 @@ export default {
   /*border: 1px solid black*/
 }
 
+.avactor {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  width: 80px;
+  height: 100px;
+  background: #fff;
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 16px;
+  padding: 10px 0;
+}
+
+.avactor.login {
+  box-shadow: 0 0 20px rgb(177, 238, 9);
+}
+
+.avactor.logout {
+  box-shadow: 0 0 20px #000;
+}
+
+.avactor img {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avactor .username {
+  font-weight: bold;
+}
+
 .left_menu {
   position: relative;
   left: 0;
@@ -135,6 +153,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  z-index: 999;
 }
 
 .left_menu div {
@@ -166,6 +185,12 @@ export default {
   z-index: 999;
 }
 
+.left_menu div .home {
+  position: absolute;
+  right: -80px;
+  top: 5px;
+}
+
 .left_menu div i {
   display: inline-block;
   height: 100%;
@@ -190,6 +215,10 @@ export default {
   100% {
     box-shadow: 0 0 0.5rem rgb(58, 54, 54);
   }
+}
+
+.hide_chat /deep/.el-card_body {
+  width: 10%;
 }
 
 /*侧边栏样式*/
