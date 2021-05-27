@@ -310,7 +310,6 @@ li {
   position: absolute;
   left: -100%;
   top: 40px;
-  border: 1px solid #000;
   background: #fff;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
