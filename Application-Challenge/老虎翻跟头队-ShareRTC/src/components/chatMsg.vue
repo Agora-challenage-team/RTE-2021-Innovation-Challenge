@@ -230,29 +230,8 @@ li {
   position: relative;
 }
 
-.showMsg li:not(:first-child)::after {
-  content: "标记已读";
-  width: 20%;
-  height: 50%;
-  position: absolute;
-  right: 0;
-  top: 50%;
-  line-height: 32px;
-  opacity: 0.8;
-  background: #757bce;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  color: #fff;
-  visibility: hidden;
-  font-size: 13px;
-}
-
 .showMsg li:hover {
   background: #ccc;
-}
-
-.showMsg li:hover::after {
-  visibility: visible;
 }
 
 .showMsg li img {
