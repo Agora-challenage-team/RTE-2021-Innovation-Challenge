@@ -6,7 +6,7 @@
         <div class="username">taptaq</div>
         <div class="status">
           <span v-show="showStatus">在线</span>
-          <span v-show="!showStatus">掉线</span>
+          <span v-show="!showStatus">离线</span>
         </div>
       </div>
 

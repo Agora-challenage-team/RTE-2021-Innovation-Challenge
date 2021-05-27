@@ -91,6 +91,7 @@ a {
 
 .video_container div:hover {
   box-shadow: 0 0 5px rgb(58, 54, 54);
+  transform: scale(1.1);
 }
 
 .video_container div i {

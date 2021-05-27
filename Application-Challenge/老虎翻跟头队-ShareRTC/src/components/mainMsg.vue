@@ -73,11 +73,20 @@ export default {
         this.tagMsg = "日出啦，早点起床看看这绝美的日出，开始新的一天吧~";
       }
       // 早上
-      if (this.h > 7 && this.h <= 17) {
+      if (this.h > 7 && this.h <= 11) {
         this.$refs.timeTag.style.backgroundImage =
           "url(" + require("../assets/sun.svg") + ")";
         this.$refs.fancy.style.backgroundImage = "linear-gradient(#757bce, #4e55a0)";
         this.tagMsg = "早上好，吃完早餐活力满满，就开始今天的工作吧~";
+      }
+      // 下午
+      if (this.h > 11 && this.h <= 17) {
+        this.$refs.timeTag.style.backgroundImage =
+          "url(" + require("../assets/afternoon.svg") + ")";
+        this.$refs.timeTag.style.width = 200 + "px";
+        this.$refs.timeTag.style.height = 200 + "px";
+        this.$refs.fancy.style.backgroundImage = "linear-gradient(#757bce, #c7e61b)";
+        this.tagMsg = "下午好，好好睡个午觉，下午继续完成工作吧~";
       }
       // 晚上
       if (this.h > 17) {
